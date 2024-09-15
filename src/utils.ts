@@ -13,6 +13,7 @@ export const WHITESPACE_DEPENDENT_EXTENSIONS = [
   ".coffee", // CoffeeScript
   ".pug", // Pug
   ".styl", // Stylus
+  ".cs", // C#
 ];
 
 export const DEFAULT_IGNORES = [
@@ -58,11 +59,18 @@ export const DEFAULT_IGNORES = [
   "pom.xml.releaseBackup",
   "pom.xml.versionsBackup",
   "pom.xml.next",
-  // .NET
+  // .NET / C#
   "bin",
   "obj",
   "*.suo",
   "*.user",
+  "*.userosscache",
+  "*.sln.docstates",
+  "*.dll",
+  "*.exe",
+  "*.pdb",
+  "*.cache",
+  "*.csproj.user",
   // Go
   "go.sum",
   // Rust
@@ -179,8 +187,15 @@ export function getFileType(filePath: string): string {
       return 'Shared Object';
     case '.dylib':
       return 'Dynamic Library';
-    default:
-      return 'Binary';
+      case '.cs':
+        return 'C# Source File';
+      case '.csproj':
+        return 'C# Project File';
+      case '.sln':
+        return 'Visual Studio Solution File';
+      default:
+        return 'Binary';
+      
   }
 }
 
