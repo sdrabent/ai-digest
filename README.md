@@ -8,6 +8,7 @@ A CLI tool to aggregate your codebase into a single Markdown file for use with C
 - Ignores common build artifacts and configuration files
 - Outputs a single Markdown file containing the whole codebase
 - Provides options for whitespace removal and custom ignore patterns
+- Improved support for C# projects, including handling of .cs, .csproj, and .sln files
 
 ## How to Use
 

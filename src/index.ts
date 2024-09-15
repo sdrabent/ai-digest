@@ -105,6 +105,13 @@ async function aggregateFiles(inputDir: string, outputFile: string, useDefaultIg
           output += `# ${relativePath}\n\n`;
           if (fileType === 'SVG Image') {
             output += `This is a file of the type: ${fileType}\n\n`;
+          } else if (fileType === 'C# Project File' || fileType === 'Visual Studio Solution File') {
+            // For C# project files and solution files, we might want to include their content
+            let content = await fs.readFile(fullPath, 'utf-8');
+            content = escapeTripleBackticks(content);
+            output += `\`\`\`xml\n`;
+            output += content;
+            output += '\n\`\`\`\n\n';
           } else {
             output += `This is a binary file of the type: ${fileType}\n\n`;
           }
